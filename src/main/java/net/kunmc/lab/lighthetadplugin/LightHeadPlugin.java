@@ -1,13 +1,13 @@
-package net.kunmc.lab.seikatsusabaplugin;
+package net.kunmc.lab.lighthetadplugin;
 
-import net.kunmc.lab.seikatsusabaplugin.commands.HeadCommand;
+import net.kunmc.lab.lighthetadplugin.commands.HeadCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class SeikatsuSabaPlugin extends JavaPlugin
+public final class LightHeadPlugin extends JavaPlugin
 {
-    private static SeikatsuSabaPlugin plugin;
+    private static LightHeadPlugin plugin;
 
-    public static SeikatsuSabaPlugin getPlugin()
+    public static LightHeadPlugin getPlugin()
     {
         return plugin;
     }

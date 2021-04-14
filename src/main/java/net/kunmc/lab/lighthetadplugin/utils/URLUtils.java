@@ -1,4 +1,4 @@
-package net.kunmc.lab.seikatsusabaplugin.utils;
+package net.kunmc.lab.lighthetadplugin.utils;
 
 import org.apache.commons.io.IOUtils;
 

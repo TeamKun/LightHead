@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.kunmc.lab</groupId>
-    <artifactId>SeikatsuSabaPlugin</artifactId>
+    <artifactId>LightHeadPlugin</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>SeikatsuSabaPlugin</name>
+    <name>LightHeadPlugin</name>
 
-    <description>生活鯖用のプラグイン</description>
+    <description>かるいあたま</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

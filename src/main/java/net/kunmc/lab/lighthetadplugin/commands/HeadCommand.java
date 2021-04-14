@@ -1,12 +1,12 @@
-package net.kunmc.lab.seikatsusabaplugin.commands;
+package net.kunmc.lab.lighthetadplugin.commands;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.kunmc.lab.seikatsusabaplugin.SeikatsuSabaPlugin;
-import net.kunmc.lab.seikatsusabaplugin.utils.URLUtils;
-import net.kunmc.lab.seikatsusabaplugin.utils.Utils;
+import net.kunmc.lab.lighthetadplugin.LightHeadPlugin;
+import net.kunmc.lab.lighthetadplugin.utils.URLUtils;
+import net.kunmc.lab.lighthetadplugin.utils.Utils;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -134,7 +134,7 @@ public class HeadCommand implements CommandExecutor, TabCompleter
             {
                 getHead(player, args[0]);
             }
-        }.runTaskAsynchronously(SeikatsuSabaPlugin.getPlugin());
+        }.runTaskAsynchronously(LightHeadPlugin.getPlugin());
 
         return true;
     }
