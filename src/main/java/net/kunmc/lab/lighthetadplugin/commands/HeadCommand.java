@@ -119,7 +119,7 @@ public class HeadCommand implements CommandExecutor, TabCompleter
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
-        if (!Utils.hasPermission(sender, "seikatsu.head") ||
+        if (!Utils.hasPermission(sender, "lighthead.head") ||
                 !Utils.isPlayer(sender) ||
                 !Utils.invalidLengthMessage(sender, args, 1, 1))
             return true;
