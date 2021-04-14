@@ -11,10 +11,10 @@ commands:
     description: プレイヤの頭をチョンパします！
 
 permissions:
-  seikatsu:
+  lighthead:
     description: このプラグインのメインコマンドです。
     children:
       head: true
-  seikatsu.head:
+  lighthead.head:
     description: プレイヤの頭をチョンパします！
     default: true
