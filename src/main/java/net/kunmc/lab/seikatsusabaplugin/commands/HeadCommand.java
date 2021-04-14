@@ -31,26 +31,13 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class HeadCommand implements CommandExecutor, TabCompleter
-{/*
-    private static Method profileMethod;
-
-   static {
-       try
-       {
-           profileMethod = SkullMeta.class.getDeclaredMethod("setProfile");
-           profileMethod.setAccessible(true);
-       }
-       catch (Exception e)
-       {
-           e.printStackTrace();
-       }
-   }*/
-
+{
     private static void getHead(Player getter, String name)
     {
         Player target = Utils.getPlayerAllowOffline(name);
 
         String uuid;
+        String playerName;
 
         if (target == null)
         {
@@ -61,10 +48,16 @@ public class HeadCommand implements CommandExecutor, TabCompleter
                 return;
             }
 
-            uuid = new Gson().fromJson(uu, JsonObject.class).get("id").getAsString();
+            JsonObject object = new Gson().fromJson(uu, JsonObject.class);
+
+            uuid = object.get("id").getAsString();
+            playerName = object.get("name").getAsString();
         }
         else
+        {
             uuid = target.getUniqueId().toString().replace("-", "");
+            playerName = target.getName();
+        }
 
         String skinResult = URLUtils.getAsString("https://sessionserver.mojang.com/session/minecraft/profile/" + uuid);
         if (skinResult.startsWith("E: "))
@@ -108,7 +101,6 @@ public class HeadCommand implements CommandExecutor, TabCompleter
                     stack,
                     "{SkullOwner:{Id:\"" + new UUID(uuid.hashCode(), uuid.hashCode()) + "\",Properties:{textures:[{Value:\"" + Base64.getEncoder().encodeToString(skin) + "\"}]}}}"
             );
-            //profileMethod.invoke(meta, profile);
         }
         catch (Exception e)
         {
@@ -117,7 +109,7 @@ public class HeadCommand implements CommandExecutor, TabCompleter
             return;
         }
         SkullMeta meta = (SkullMeta) stack.getItemMeta();
-        meta.displayName(Component.text("プレイヤーの頭"));
+        meta.displayName(Component.text(playerName + "の頭"));
 
         meta.lore(Collections.singletonList(Component.text(ChatColor.DARK_RED + "くびちょんぱ！")));
         stack.setItemMeta(meta);
