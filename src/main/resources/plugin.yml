@@ -14,7 +14,7 @@ permissions:
   lighthead:
     description: このプラグインのメインコマンドです。
     children:
-      head: true
+      lighthead.head: true
   lighthead.head:
     description: プレイヤの頭をチョンパします！
     default: true
