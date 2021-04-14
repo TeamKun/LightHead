@@ -1,6 +1,6 @@
-# 生活鯖プラグイン
-KUN Lab生活鯖用の便利ないろいろ。
+# LightHeadPlugin
+かるいあたま。
 ## コマンド
 + /head <NAME>
 プレイヤを首チョンパする。  
-権限：seikatsu.head  
+権限：lighthead.head  

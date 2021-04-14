@@ -3,7 +3,7 @@ version: ${project.version}
 main: net.kunmc.lab.lighthetadplugin.LightHeadPlugin
 api-version: 1.16
 authors: [Peyang]
-description: 生活鯖用のプラグイン
+description: かるいあたま。
 website: https://kunmc.net/
 
 commands:
