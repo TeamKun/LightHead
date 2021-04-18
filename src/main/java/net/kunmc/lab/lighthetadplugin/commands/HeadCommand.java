@@ -114,6 +114,7 @@ public class HeadCommand implements CommandExecutor, TabCompleter
         meta.lore(Collections.singletonList(Component.text(ChatColor.DARK_RED + "くびちょんぱ！")));
         stack.setItemMeta(meta);
         getter.getInventory().addItem(stack);
+        getter.sendMessage(ChatColor.GREEN + playerName + "の頭を手に入れました。");
     }
 
     @Override
@@ -127,6 +128,7 @@ public class HeadCommand implements CommandExecutor, TabCompleter
         Player player = (Player) sender;
 
 
+        sender.sendMessage(ChatColor.DARK_RED + "頭を生成中...");
         new BukkitRunnable()
         {
             @Override
