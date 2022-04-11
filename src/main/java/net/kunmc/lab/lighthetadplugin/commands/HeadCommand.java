@@ -27,6 +27,7 @@ import java.util.Arrays;
 import java.util.Base64;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -154,6 +155,7 @@ public class HeadCommand implements CommandExecutor, TabCompleter
             tab.addAll(Arrays.stream(Bukkit.getOfflinePlayers())
                     .map(OfflinePlayer::getName)
                     .filter(op -> !tab.contains(op))
+                    .filter(Objects::nonNull)
                     .collect(Collectors.toList()));
         }
         ArrayList<String> asCopy = new ArrayList<>();
