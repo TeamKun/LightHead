@@ -35,7 +35,7 @@ public class HeadCommand implements CommandExecutor, TabCompleter
 {
     private static void getHead(Player recipient, String name)
     {
-        recipient.sendMessage(ChatColor.GRAY + name + " を探しています...");
+        recipient.sendMessage(ChatColor.DARK_RED + name + " を探しています...");
 
         Player target = Utils.getPlayerAllowOffline(name);
 
@@ -44,7 +44,7 @@ public class HeadCommand implements CommandExecutor, TabCompleter
 
         if (target == null)
         {
-            recipient.sendMessage(ChatColor.RED + "おっと！" + name + " という名前のプレイヤーは, このサーバに一度もログインしたことがないようです。\n" +
+            recipient.sendMessage(ChatColor.RED + "おっと！ " + name + " という名前のプレイヤーは, このサーバに一度もログインしたことがないようです。\n" +
                     ChatColor.RED + "Minecraft サーバに問い合わせています...");
 
             String uu = URLUtils.getAsString("https://api.mojang.com/users/profiles/minecraft/" + name);
@@ -66,9 +66,9 @@ public class HeadCommand implements CommandExecutor, TabCompleter
             playerName = target.getName();
         }
 
-        recipient.sendMessage(ChatColor.GRAY + "プレイヤー" + playerName + "の UUID を取得しました。");
+        recipient.sendMessage(ChatColor.GREEN + "プレイヤー" + playerName + "の UUID を取得しました。");
 
-        recipient.sendMessage(ChatColor.GRAY + "プレイヤー" + playerName + "の頭を切り取っています...");
+        recipient.sendMessage(ChatColor.DARK_RED + "プレイヤー" + playerName + "の頭を切り取っています...");
 
         String skinResult = URLUtils.getAsString("https://sessionserver.mojang.com/session/minecraft/profile/" + uuid);
         if (skinResult.startsWith("E: "))
