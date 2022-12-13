@@ -42,7 +42,7 @@ public class HeadCommand implements CommandExecutor, TabCompleter
 
         if (target == null)
         {
-            String uu = URLUtils.getAsString("https://api.mojang.com/user/profile/agent/minecraft/name/" + name);
+            String uu = URLUtils.getAsString("https://api.mojang.com/users/profiles/minecraft/" + name);
             if (uu.startsWith("E: "))
             {
                 getter.sendMessage(ChatColor.RED + "エラー：" + uu.substring(3));
