@@ -1,4 +1,4 @@
-package net.kunmc.lab.lighthetadplugin.commands;
+ package net.kunmc.lab.lighthetadplugin.commands;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -33,8 +33,10 @@ import java.util.stream.Collectors;
 
 public class HeadCommand implements CommandExecutor, TabCompleter
 {
-    private static void getHead(Player getter, String name)
+    private static void getHead(Player recipient, String name)
     {
+        recipient.sendMessage(ChatColor.GRAY + name + " を探しています...");
+
         Player target = Utils.getPlayerAllowOffline(name);
 
         String uuid;
@@ -42,10 +44,13 @@ public class HeadCommand implements CommandExecutor, TabCompleter
 
         if (target == null)
         {
+            recipient.sendMessage(ChatColor.RED + "おっと！" + name + " という名前のプレイヤーは, このサーバに一度もログインしたことがないようです。\n" +
+                    ChatColor.RED + "Minecraft サーバに問い合わせています...");
+
             String uu = URLUtils.getAsString("https://api.mojang.com/users/profiles/minecraft/" + name);
             if (uu.startsWith("E: "))
             {
-                getter.sendMessage(ChatColor.RED + "エラー：" + uu.substring(3));
+                recipient.sendMessage(ChatColor.RED + "エラー：" + uu.substring(3));
                 return;
             }
 
@@ -53,6 +58,7 @@ public class HeadCommand implements CommandExecutor, TabCompleter
 
             uuid = object.get("id").getAsString();
             playerName = object.get("name").getAsString();
+
         }
         else
         {
@@ -60,10 +66,14 @@ public class HeadCommand implements CommandExecutor, TabCompleter
             playerName = target.getName();
         }
 
+        recipient.sendMessage(ChatColor.GRAY + "プレイヤー" + playerName + "の UUID を取得しました。");
+
+        recipient.sendMessage(ChatColor.GRAY + "プレイヤー" + playerName + "の頭を切り取っています...");
+
         String skinResult = URLUtils.getAsString("https://sessionserver.mojang.com/session/minecraft/profile/" + uuid);
         if (skinResult.startsWith("E: "))
         {
-            getter.sendMessage(ChatColor.RED + "エラー：" + skinResult.substring(3));
+            recipient.sendMessage(ChatColor.RED + "エラー：" + skinResult.substring(3));
             return;
         }
 
@@ -87,7 +97,7 @@ public class HeadCommand implements CommandExecutor, TabCompleter
 
         if (texture == null)
         {
-            getter.sendMessage(ChatColor.RED + "エラー：プレイヤーが見つかりませんでした！");
+            recipient.sendMessage(ChatColor.RED + "エラー：プレイヤーが見つかりませんでした！");
             return;
         }
 
@@ -106,7 +116,7 @@ public class HeadCommand implements CommandExecutor, TabCompleter
         catch (Exception e)
         {
             e.printStackTrace();
-            getter.sendMessage(ChatColor.RED + "エラーが発生いたしました：" + e.getClass());
+            recipient.sendMessage(ChatColor.RED + "エラーが発生しました：" + e.getClass());
             return;
         }
         SkullMeta meta = (SkullMeta) stack.getItemMeta();
@@ -114,8 +124,8 @@ public class HeadCommand implements CommandExecutor, TabCompleter
 
         meta.lore(Collections.singletonList(Component.text(ChatColor.DARK_RED + "くびちょんぱ！")));
         stack.setItemMeta(meta);
-        getter.getInventory().addItem(stack);
-        getter.sendMessage(ChatColor.GREEN + playerName + "の頭を手に入れました。");
+        recipient.getInventory().addItem(stack);
+        recipient.sendMessage(ChatColor.GREEN + playerName + "の頭を手に入れました。");
     }
 
     @Override
